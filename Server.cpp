@@ -190,3 +190,14 @@ int StartServer(int currentFD)
 	//당신은 모든 시련을 훌륭하게 이겨내셨습니다
 	return 1;
 }
+
+//대상 소켓을 정리하도록 합시다!
+void EndFD(struct pollfd* targetFD)
+{
+	//닫아주기!
+	close(targetFD->fd);
+
+	//닫았으니까 -1로 표시하기~!
+	targetFD->fd = -1;
+	targetFD->revents = 0;
+}
